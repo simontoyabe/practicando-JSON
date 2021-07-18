@@ -38,9 +38,24 @@ const jsonData = `
 }
 `;
 
+function renderizarHtml(miembro) {
+    const template = `
+  <li class="tarea">
+      <p><span>Miembro: </span> ${miembro.name}</p>
+      <p><span>Con edad: </span>${miembro.age}</p>
+      <p><span>Con identidad secreta: </span>${miembro.secretIdentity}</p>
+      <p><span>Poderes: </span>${miembro.powers.join(", ")}</p>
+  </li>
+`;
+    document.querySelector("#miembros").innerHTML += template;
+}
 //Recorrer el JSON e insertar en el listado del html los nombres de los miembros
 function recorrerMiembros() {
     //escribe la lógica
+    let miembros = JSON.parse(jsonData).members;
+    miembros.forEach(function(miembro) {
+        renderizarHtml(miembro);
+    });
 
 };
 recorrerMiembros();
